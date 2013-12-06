@@ -26,6 +26,9 @@ Or install it yourself as:
 
 It supports one or two characters.
 
+![fu1](http://myokoym.net/public/shogi_koma-fu1.png)
+![fu2](http://myokoym.net/public/shogi_koma-fu2.png)
+
 ### Write to PNG
 
 ```ruby
@@ -35,7 +38,8 @@ painter = ShogiKoma::Painter.new
 #painter.width = 200        # as default
 #painter.height = 200       # as default
 #painter.font = "IPAMincho" # as default
-painter.write_to_png("歩", "fu.png")
+painter.write_to_png("歩", "shogi_koma-fu1.png")
+painter.write_to_png("歩兵", "shogi_koma-fu2.png")
 ```
 
 ### Draw to Cairo::Context
