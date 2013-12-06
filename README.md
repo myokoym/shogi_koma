@@ -1,4 +1,4 @@
-# ShogiKoma
+# ShogiKoma [![Build Status](https://secure.travis-ci.org/myokoym/shogi_koma.png?branch=master)](http://travis-ci.org/myokoym/shogi_koma)
 
 An image generator for Shogi's pieces (it's "ko-ma" in Japanese) for Ruby by cairo.
 
