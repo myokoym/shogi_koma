@@ -24,6 +24,8 @@ Or install it yourself as:
 
 ## Usage
 
+It supports one or two characters.
+
 ### Write to PNG
 
 ```ruby
