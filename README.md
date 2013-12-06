@@ -2,6 +2,11 @@
 
 An image generator for Shogi's pieces (it's "ko-ma" in Japanese) for Ruby by cairo.
 
+It supports one or two characters.
+
+![fu1](http://myokoym.net/public/shogi_koma-fu1.png)
+![fu2](http://myokoym.net/public/shogi_koma-fu2.png)
+
 ## Requirements
 
 * [Ruby](https://www.ruby-lang.org/)
@@ -23,11 +28,6 @@ Or install it yourself as:
     $ gem install shogi_koma
 
 ## Usage
-
-It supports one or two characters.
-
-![fu1](http://myokoym.net/public/shogi_koma-fu1.png)
-![fu2](http://myokoym.net/public/shogi_koma-fu2.png)
 
 ### Write to PNG
 
