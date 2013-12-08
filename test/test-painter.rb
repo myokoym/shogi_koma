@@ -6,7 +6,8 @@ class PainterTest < Test::Unit::TestCase
     @painter = ShogiKoma::Painter.new
   end
 
-  def test_draw
+  class DrawTest < self
+  def test_nothing_raised
     width =  200
     height = 200
     assert_nothing_raised do
@@ -17,5 +18,6 @@ class PainterTest < Test::Unit::TestCase
         end
       end
     end
+  end
   end
 end
