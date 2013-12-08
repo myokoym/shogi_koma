@@ -44,13 +44,13 @@ module ShogiKoma
       when 1
         text
       when 2
-        if text.bytes.length == 2
+        if text.bytes.to_a.length == 2
           [text]
         else
           text
         end
       else
-        if text[0].bytes.length == 1 && text[1].bytes.length == 1
+        if text[0].bytes.to_a.length == 1 && text[1].bytes.to_a.length == 1
           [text[0..1], text[2..-1]]
         else
           [text[0], text[1..-1]]
