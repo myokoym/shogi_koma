@@ -7,7 +7,7 @@ class PainterTest < Test::Unit::TestCase
   end
 
   class DrawTest < self
-    def test_nothing_raised
+    def test_one_character
       width =  200
       height = 200
       assert_nothing_raised do
@@ -15,6 +15,32 @@ class PainterTest < Test::Unit::TestCase
           Cairo::Context.new(surface) do |context|
             context.scale(width, height)
             @painter.draw(context, "A")
+          end
+        end
+      end
+    end
+
+    def test_two_characters
+      width =  200
+      height = 200
+      assert_nothing_raised do
+        Cairo::ImageSurface.new(:argb32, width, height) do |surface|
+          Cairo::Context.new(surface) do |context|
+            context.scale(width, height)
+            @painter.draw(context, "AB")
+          end
+        end
+      end
+    end
+
+    def test_three_characters
+      width =  200
+      height = 200
+      assert_nothing_raised do
+        Cairo::ImageSurface.new(:argb32, width, height) do |surface|
+          Cairo::Context.new(surface) do |context|
+            context.scale(width, height)
+            @painter.draw(context, "ABC")
           end
         end
       end
