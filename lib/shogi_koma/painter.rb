@@ -22,7 +22,7 @@ module ShogiKoma
     def draw(context, text)
       draw_body(context)
       text = divide(text)
-      send("draw_text#{text.length}", context, text)
+      __send__("draw_text#{text.length}", context, text)
     end
 
     def draw_body(context)
