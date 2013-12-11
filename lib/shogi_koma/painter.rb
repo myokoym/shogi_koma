@@ -9,23 +9,23 @@ module ShogiKoma
       @font = "IPAMincho"
     end
 
-    def write_to_png(text, output_path)
+    def write_to_png(text, output_path, options={})
       Cairo::ImageSurface.new(:argb32, @width, @height) do |surface|
         Cairo::Context.new(surface) do |context|
           context.scale(@width, @height)
-          draw(context, text)
+          draw(context, text, options)
         end
         surface.write_to_png(output_path)
       end
     end
 
-    def draw(context, text)
-      draw_body(context)
+    def draw(context, text, options={})
+      draw_body(context, options)
       text = divide(text)
       __send__("draw_text#{text.length}", context, text)
     end
 
-    def draw_body(context)
+    def draw_body(context, options={})
       context.set_line_width(0.01)
       context.move_to(0.2, 0.2)
       context.line_to(0.5, 0.1)
@@ -33,9 +33,13 @@ module ShogiKoma
       context.line_to(0.9, 0.9)
       context.line_to(0.1, 0.9)
       context.close_path
-      context.set_source_rgb(1, 0.8, 0.2)
+      context.set_source_rgb(
+        options[:bg_red]   || 1,
+        options[:bg_green] || 0.8,
+        options[:bg_brue]  || 0.2
+      )
       context.fill_preserve
-      context.set_source_color(:black)
+      context.set_source_color(options[:txt_color] || :black)
       context.stroke
     end
 
