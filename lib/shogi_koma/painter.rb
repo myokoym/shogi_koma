@@ -3,29 +3,50 @@ require "cairo"
 module ShogiKoma
   class Painter
     attr_accessor :width, :height, :font
+    attr_reader :body_color, :text_color
     def initialize
       @width = 200
       @height = 200
       @font = "IPAMincho"
+      set_body_rgb(1, 0.8, 0.2)
+      set_text_color(:black)
     end
 
-    def write_to_png(text, output_path, options={})
+    def set_body_color(color)
+      @body_color = Cairo::Color.parse(color)
+    end
+
+    def set_body_rgba(r, g, b, a=1.0)
+      @body_color = Cairo::Color.parse([:rgba, r, g, b, a])
+    end
+    alias :set_body_rgb :set_body_rgba
+
+    def set_text_color(color)
+      @text_color = Cairo::Color.parse(color)
+    end
+
+    def set_text_rgba(r, g, b, a=1.0)
+      @text_color = Cairo::Color.parse([:rgba, r, g, b, a])
+    end
+    alias :set_text_rgb :set_text_rgba
+
+    def write_to_png(text, output_path)
       Cairo::ImageSurface.new(:argb32, @width, @height) do |surface|
         Cairo::Context.new(surface) do |context|
           context.scale(@width, @height)
-          draw(context, text, options)
+          draw(context, text)
         end
         surface.write_to_png(output_path)
       end
     end
 
-    def draw(context, text, options={})
-      draw_body(context, options)
+    def draw(context, text)
+      draw_body(context)
       text = divide(text)
       __send__("draw_text#{text.length}", context, text)
     end
 
-    def draw_body(context, options={})
+    def draw_body(context)
       context.set_line_width(0.01)
       context.move_to(0.2, 0.2)
       context.line_to(0.5, 0.1)
@@ -33,13 +54,9 @@ module ShogiKoma
       context.line_to(0.9, 0.9)
       context.line_to(0.1, 0.9)
       context.close_path
-      context.set_source_rgb(
-        options[:bg_red]   || 1,
-        options[:bg_green] || 0.8,
-        options[:bg_brue]  || 0.2
-      )
+      context.set_source_color(@body_color)
       context.fill_preserve
-      context.set_source_color(options[:txt_color] || :black)
+      context.set_source_color(@text_color)
       context.stroke
     end
 
