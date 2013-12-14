@@ -9,6 +9,7 @@ module ShogiKoma
       @height = 200
       @font = "IPAMincho"
       set_body_rgb(1, 0.8, 0.2)
+      set_frame_color(:black)
       set_text_color(:black)
     end
 
@@ -20,6 +21,15 @@ module ShogiKoma
       @body_color = Cairo::Color.parse([:rgba, r, g, b, a])
     end
     alias :set_body_rgb :set_body_rgba
+
+    def set_frame_color(color)
+      @frame_color = Cairo::Color.parse(color)
+    end
+
+    def set_frame_rgba(r, g, b, a=1.0)
+      @frame_color = Cairo::Color.parse([:rgba, r, g, b, a])
+    end
+    alias :set_frame_rgb :set_frame_rgba
 
     def set_text_color(color)
       @text_color = Cairo::Color.parse(color)
@@ -56,7 +66,7 @@ module ShogiKoma
       context.close_path
       context.set_source_color(@body_color)
       context.fill_preserve
-      context.set_source_color(@text_color)
+      context.set_source_color(@frame_color)
       context.stroke
     end
 
@@ -80,6 +90,7 @@ module ShogiKoma
     end
 
     def draw_text1(context, text)
+      context.set_source_color(@text_color)
       text = text[0] if text.is_a?(Array)
       context.select_font_face(@font)
       context.font_size = 0.6
@@ -88,6 +99,7 @@ module ShogiKoma
     end
 
     def draw_text2(context, text)
+      context.set_source_color(@text_color)
       context.select_font_face(@font)
       context.font_size = 0.4
       context.move_to(0.3, 0.49)
