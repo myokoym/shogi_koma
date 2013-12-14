@@ -19,7 +19,7 @@ class PainterTest < Test::Unit::TestCase
       assert_nothing_raised_in_draw("ABC")
     end
 
-    def test_change_options
+    def test_body_color_with_rgb
       @painter.set_body_rgb(0.2, 0.2, 0.2)
       assert_nothing_raised_in_draw("D")
     end
