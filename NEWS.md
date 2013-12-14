@@ -1,5 +1,19 @@
 # NEWS
 
+## 0.0.3: 2013-12-14
+
+Supported customizing colors!
+
+### Changes
+
+  * Improvements
+    * Supported customizing colors (body, frame and text).
+      [Patch by Seiichi Yonezawa]
+
+### Thanks
+
+  * Seiichi Yonezawa
+
 ## 0.0.2: 2013-12-08
 
 ASCII characters support release!
