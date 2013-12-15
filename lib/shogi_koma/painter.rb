@@ -3,7 +3,7 @@ require "cairo"
 module ShogiKoma
   class Painter
     attr_accessor :width, :height, :font
-    attr_reader :body_color, :text_color
+    attr_reader :body_color, :frame_color, :text_color
     def initialize
       @width = 200
       @height = 200
