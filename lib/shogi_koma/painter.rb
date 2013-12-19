@@ -76,25 +76,6 @@ module ShogiKoma
       context.stroke
     end
 
-    def divide(text)
-      case text.length
-      when 1
-        text
-      when 2
-        if text.bytes.to_a.length == 2
-          [text]
-        else
-          text
-        end
-      else
-        if text[0].bytes.to_a.length == 1 && text[1].bytes.to_a.length == 1
-          [text[0..1], text[2..-1]]
-        else
-          [text[0], text[1..-1]]
-        end
-      end
-    end
-
     def draw_text1(context, text)
       context.set_source_color(@text_color)
       text = text[0] if text.is_a?(Array)
@@ -112,6 +93,26 @@ module ShogiKoma
       context.show_text(text[0])
       context.move_to(0.3, 0.85)
       context.show_text(text[1])
+    end
+
+    private
+    def divide(text)
+      case text.length
+      when 1
+        text
+      when 2
+        if text.bytes.to_a.length == 2
+          [text]
+        else
+          text
+        end
+      else
+        if text[0].bytes.to_a.length == 1 && text[1].bytes.to_a.length == 1
+          [text[0..1], text[2..-1]]
+        else
+          [text[0], text[1..-1]]
+        end
+      end
     end
   end
 end
