@@ -13,23 +13,22 @@ module ShogiKoma
     end
 
     def find_font(part_of_font_name)
-      found = Fontdock::Local.names.find do |name|
-        /\A#{part_of_font_name}/i =~ name
-      end
+      found = find_font_from_pattern(/\A#{part_of_font_name}/i)
       return found if found
 
-      found = Fontdock::Local.names.find do |name|
-        /\A#{part_of_font_name}/ =~ name
-      end
+      found = find_font_from_pattern(/\A#{part_of_font_name}/)
       return found if found
 
-      found = Fontdock::Local.names.find do |name|
-        /#{part_of_font_name}/ =~ name
-      end
+      found = find_font_from_pattern(/#{part_of_font_name}/)
       return found if found
 
+      find_font_from_pattern(/#{part_of_font_name}/i)
+    end
+
+    private
+    def find_font_from_pattern(pattern)
       Fontdock::Local.names.find do |name|
-        /#{part_of_font_name}/i =~ name
+        pattern =~ name
       end
     end
   end
