@@ -13,6 +13,12 @@ module ShogiKoma
     end
 
     def find_font(part_of_font_name)
+      found = find_font_from_pattern(/\A#{part_of_font_name}\z/)
+      return found if found
+
+      found = find_font_from_pattern(/\A#{part_of_font_name}\z/i)
+      return found if found
+
       found = find_font_from_pattern(/\A#{part_of_font_name}/)
       return found if found
 
