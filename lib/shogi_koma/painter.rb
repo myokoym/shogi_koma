@@ -1,4 +1,5 @@
 require "cairo"
+require "fontdock"
 
 module ShogiKoma
   class Painter
@@ -11,6 +12,32 @@ module ShogiKoma
       set_body_rgb(1, 0.8, 0.2)
       set_frame_color(:black)
       set_text_color(:black)
+    end
+
+    def set_font(part_of_font_name)
+      font = find_font(part_of_font_name)
+      @font = font if font
+    end
+
+    def find_font(part_of_font_name)
+      found = Fontdock::Local.names.find do |name|
+        /\A#{part_of_font_name}/i =~ name
+      end
+      return found if found
+
+      found = Fontdock::Local.names.find do |name|
+        /\A#{part_of_font_name}/ =~ name
+      end
+      return found if found
+
+      found = Fontdock::Local.names.find do |name|
+        /#{part_of_font_name}/ =~ name
+      end
+      return found if found
+
+      Fontdock::Local.names.find do |name|
+        /#{part_of_font_name}/i =~ name
+      end
     end
 
     def set_body_color(color)

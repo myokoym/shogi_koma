@@ -6,6 +6,18 @@ class PainterTest < Test::Unit::TestCase
     @painter = ShogiKoma::Painter.new
   end
 
+  class SetFontTest < self
+    def test_found
+      part_of_name = "M"
+      assert_match(/#{part_of_name}/, @painter.set_font(part_of_name))
+    end
+
+    def test_not_found
+      part_of_name = "ABCDE12345"
+      assert_nil(@painter.set_font(part_of_name))
+    end
+  end
+
   class DrawTest < self
     def test_one_character
       assert_nothing_raised_in_draw("A")

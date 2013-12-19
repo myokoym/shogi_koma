@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency("cairo")
+  spec.add_runtime_dependency("fontdock")
 
   spec.add_development_dependency("test-unit")
   spec.add_development_dependency("test-unit-notify")
