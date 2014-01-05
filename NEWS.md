@@ -1,5 +1,12 @@
 # NEWS
 
+## 0.0.4: 2014-01-05
+
+### Changes
+
+  * Improvements
+    * Guess a font from a part of font name.
+
 ## 0.0.3: 2013-12-14
 
 Supported customizing colors!
