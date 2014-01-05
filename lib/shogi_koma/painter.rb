@@ -1,6 +1,5 @@
 require "cairo"
 require "fontdock"
-require "shogi_koma/font"
 
 module ShogiKoma
   class Painter
@@ -9,14 +8,14 @@ module ShogiKoma
     def initialize
       @width = 200
       @height = 200
-      @font = Font.new
+      @font = "IPAMincho"
       set_body_rgb(1, 0.8, 0.2)
       set_frame_color(:black)
       set_text_color(:black)
     end
 
     def set_font(part_of_font_name)
-      @font.set_font(part_of_font_name)
+      @font = Fontdock::Local.find(part_of_font_name)
     end
 
     def set_body_color(color)
@@ -79,7 +78,7 @@ module ShogiKoma
     def draw_text1(context, text)
       context.set_source_color(@text_color)
       text = text[0] if text.is_a?(Array)
-      context.select_font_face(@font.name)
+      context.select_font_face(@font)
       context.font_size = 0.6
       context.move_to(0.2, 0.75)
       context.show_text(text)
@@ -87,7 +86,7 @@ module ShogiKoma
 
     def draw_text2(context, text)
       context.set_source_color(@text_color)
-      context.select_font_face(@font.name)
+      context.select_font_face(@font)
       context.font_size = 0.4
       context.move_to(0.3, 0.49)
       context.show_text(text[0])
