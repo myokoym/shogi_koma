@@ -3,12 +3,13 @@ require "fontdock"
 
 module ShogiKoma
   class Painter
-    attr_accessor :width, :height, :font
+    attr_accessor :width, :height, :font, :border_scale
     attr_reader :body_color, :frame_color, :text_color
     def initialize
       @width = 200
       @height = 200
       @font = "IPAMincho"
+      @border_scale = 1.0
       set_body_rgb(1, 0.8, 0.2)
       set_frame_color(:black)
       set_text_color(:black)
@@ -62,7 +63,8 @@ module ShogiKoma
     end
 
     def draw_body(context)
-      context.set_line_width(0.01)
+      border_width = 0.01 * @border_scale
+      context.set_line_width(border_width)
       context.move_to(0.2, 0.2)
       context.line_to(0.5, 0.1)
       context.line_to(0.8, 0.2)
