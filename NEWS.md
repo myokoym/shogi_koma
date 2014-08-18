@@ -1,5 +1,15 @@
 # NEWS
 
+## 0.0.5: 2014-08-18
+
+### Changes
+
+  * Improvements
+    * Add a parameter "border_scale".
+
+  * Fixes
+    * Removed needless require.
+
 ## 0.0.4: 2014-01-05
 
 ### Changes
