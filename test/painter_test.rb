@@ -1,4 +1,4 @@
-require "shogi_koma/painter"
+require "test_helper"
 require "cairo"
 
 class PainterTest < Test::Unit::TestCase

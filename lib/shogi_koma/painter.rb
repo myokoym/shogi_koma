@@ -8,7 +8,10 @@ module ShogiKoma
     def initialize
       @width = 200
       @height = 200
-      @font = "IPAMincho"
+      ["Hiragino Mincho", "MS Mincho", "Noto"].each do |font_name|
+        @font = Fontdock::Local.find(font_name)
+        break if @font
+      end
       @border_scale = 1.0
       set_body_rgb(1, 0.8, 0.2)
       set_frame_color(:black)
