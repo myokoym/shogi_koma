@@ -1,5 +1,13 @@
 # NEWS
 
+## 0.0.6: 2023-12-29
+
+### Changes
+
+  * Improvements
+    * Fix default font
+    * test: Use Rake::TestTask
+
 ## 0.0.5: 2014-08-18
 
 ### Changes
