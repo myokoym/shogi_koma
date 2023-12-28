@@ -37,7 +37,7 @@ require "shogi_koma"
 painter = ShogiKoma::Painter.new
 #painter.width = 200        # as default
 #painter.height = 200       # as default
-#painter.font = "IPAMincho" # as default
+#painter.font = "xxx"       # default: "Hiragino Mincho" or "MS Mincho" or "Noto"
 painter.write_to_png("歩", "shogi_koma-fu1.png")
 painter.write_to_png("歩兵", "shogi_koma-fu2.png")
 ```
@@ -55,7 +55,6 @@ Cairo::ImageSurface.new(:argb32, width, height) do |surface|
   Cairo::Context.new(surface) do |context|
     context.scale(width, height)
     painter = ShogiKoma::Painter.new
-    #painter.font = "IPAMincho" # as default
     painter.draw(context, "歩")
   end
 end
